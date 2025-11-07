@@ -1,0 +1,1 @@
+web: gunicorn app_dash_ral_analysis_animted:server
