@@ -1,12 +1,8 @@
 services:
   - type: web
-    name: ral-dash-app
+    name: relatorio-alarmes
     env: python
-    plan: free
+    runtime: python-3.10
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app_dash_ral_analysis_animated:app
-    envVars:
-      - key: PORT
-        value: 10000
-
-        runtime: python-3.10
+    startCommand: gunicorn app_dash_ral_analysis_animated:server
+    plan: free
