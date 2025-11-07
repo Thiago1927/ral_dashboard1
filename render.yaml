@@ -4,7 +4,7 @@ services:
     env: python
     plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:server
+    startCommand: gunicorn app_dash_ral_analysis_animated:app
     envVars:
       - key: PORT
         value: 10000
