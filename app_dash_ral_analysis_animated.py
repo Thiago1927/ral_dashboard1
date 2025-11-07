@@ -8,10 +8,7 @@ import plotly.express as px
 import pandas as pd
 import io, base64
 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.CYBORG], serve_locally=True)
-...
-graf_bar.update_layout(transition=dict(duration=700, easing="cubic-in-out"))
-graf_pie.update_layout(transition=dict(duration=700, easing="cubic-in-out"))
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.CYBORG])
 
 app.title = "Relatório de alarmes"
 
@@ -87,9 +84,8 @@ def update_output(contents, filename):
     graf_bar = px.bar(
         df.groupby(df["HORÁRIO ALARME"].dt.date).size().reset_index(name="Rals"),
         x="HORÁRIO ALARME", y="Rals",
-        title="Alarmes por dia ",
+        title="Alarmes por dia",
         template="plotly_dark"
-        
     )
 
     graf_pie = px.pie(
