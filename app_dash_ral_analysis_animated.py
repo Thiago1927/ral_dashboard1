@@ -84,12 +84,14 @@ def update_output(contents, filename):
         "≤ 15 min": len(df[(df["Tempo de Recuperação (min)"] > 10) & (df["Tempo de Recuperação (min)"] <= 15)])
     }
 
+    # === GRÁFICOS ===
     graf_bar = px.bar(
-        df.groupby(df["HORÁRIO ALARME"].dt.date).size().reset_index(name="Rals"),
-        x="HORÁRIO ALARME", y="Rals",
-        title="Alarmes por dia",
+        df.groupby(df["HORÁRIO ALARME"].dt.date).size().reset_index(name="RALs"),
+        x="HORÁRIO ALARME", y="RALs",
+        title="RALs por dia",
         template="plotly_dark"
     )
+    graf_bar.update_layout(transition=dict(duration=800, easing="cubic-in-out"))
 
     graf_pie = px.pie(
         names=list(faixas.keys()),
@@ -97,6 +99,7 @@ def update_output(contents, filename):
         title="Distribuição por tempo de recuperação",
         template="plotly_dark"
     )
+    graf_pie.update_layout(transition=dict(duration=800, easing="cubic-in-out"))
 
     return html.Div([
         html.Div([
